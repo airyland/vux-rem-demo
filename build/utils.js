@@ -12,16 +12,20 @@ exports.assetsPath = function (_path) {
 exports.cssLoaders = function (options) {
   options = options || {}
   var cssLoader = {
-    loader: 'css-loader!px2rem-loader?remUnit=75&remPrecision=8',
+    loader: 'css-loader',
     options: {
       minimize: process.env.NODE_ENV === 'production',
       sourceMap: options.sourceMap
     }
   }
+  // !px2rem-loader?remUnit=75&remPrecision=8
+  var px2rem = {
+    loader:'px2rem-loader?remUnit=75&remPrecision=8'
+  }
 
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
-    var loaders = [cssLoader]
+    var loaders = [cssLoader,px2rem]
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
